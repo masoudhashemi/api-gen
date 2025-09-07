@@ -1,0 +1,62 @@
+domain: airline
+tools:
+  - name: get_passenger
+    description: Fetch passenger details by passenger_id.
+    write: false
+    deps: []
+    schema:
+      type: object
+      properties:
+        passenger_id:
+          type: string
+      required: [passenger_id]
+  - name: get_reservation
+    description: Fetch reservation details by reservation_id.
+    write: false
+    deps: []
+    schema:
+      type: object
+      properties:
+        reservation_id:
+          type: string
+      required: [reservation_id]
+  - name: change_seat
+    description: Change the seat for a reservation.
+    write: true
+    deps: [get_reservation]
+    schema:
+      type: object
+      properties:
+        reservation_id:
+          type: string
+        passenger_id:
+          type: string
+        seat:
+          type: string
+      required: [reservation_id, passenger_id, seat]
+  - name: cancel_reservation
+    description: Cancel a reservation for the owning passenger.
+    write: true
+    deps: [get_reservation]
+    schema:
+      type: object
+      properties:
+        reservation_id:
+          type: string
+        passenger_id:
+          type: string
+        reason:
+          type: string
+      required: [reservation_id, passenger_id]
+  - name: request_refund
+    description: Request a refund up to the original fare.
+    write: true
+    deps: [get_reservation]
+    schema:
+      type: object
+      properties:
+        reservation_id:
+          type: string
+        amount:
+          type: number
+      required: [reservation_id, amount]

@@ -1,0 +1,90 @@
+domain: retail
+tools:
+  - name: get_user_info
+    description: Fetch user profile information by user_id.
+    write: false
+    deps: []
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+      required: [user_id]
+  - name: list_orders
+    description: List order IDs for a given user.
+    write: false
+    deps: []
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+      required: [user_id]
+  - name: get_order
+    description: Fetch an order details by order_id.
+    write: false
+    deps: [list_orders]
+    schema:
+      type: object
+      properties:
+        order_id:
+          type: string
+      required: [order_id]
+  - name: cancel_order
+    description: Cancel an order if allowed by policy and status.
+    write: true
+    deps: [get_order]
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+        order_id:
+          type: string
+        reason:
+          type: string
+      required: [user_id, order_id]
+  - name: refund_order
+    description: Issue a refund up to the order total.
+    write: true
+    deps: [get_order]
+    schema:
+      type: object
+      properties:
+        order_id:
+          type: string
+        amount:
+          type: number
+      required: [order_id, amount]
+  - name: update_address
+    description: Update a user's shipping address.
+    write: true
+    deps: [get_user_info]
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+        address:
+          type: string
+      required: [user_id, address]
+  - name: resolve_user_by_name
+    description: Resolve a user's ID from their name.
+    write: false
+    deps: []
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+      required: [name]
+  - name: find_delivered_order
+    description: Find delivered orders for a user.
+    write: false
+    deps: [list_orders]
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+      required: [user_id]

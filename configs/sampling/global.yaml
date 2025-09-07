@@ -1,0 +1,10 @@
+personas:
+  - id: p_casual
+    style: casual
+    tone: friendly
+  - id: p_formal
+    style: formal
+    tone: polite
+  - id: p_impatient
+    style: blunt
+    tone: impatient

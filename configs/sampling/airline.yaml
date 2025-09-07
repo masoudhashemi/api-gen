@@ -1,0 +1,22 @@
+policies:
+  - Seat changes must belong to the requesting passenger.
+  - Refunds cannot exceed original fare.
+  - Cannot cancel reservations after status is 'flown'.
+
+domain_rows:
+  passengers:
+    - passenger_id: p_001
+      name: Ravi
+    - passenger_id: p_002
+      name: Mia
+  reservations:
+    - reservation_id: r_100
+      status: booked
+      fare: 200.0
+    - reservation_id: r_200
+      status: booked
+      fare: 350.0
+
+examples:
+  - "Example: 'Change seat on reservation r_100 for passenger p_001' => get_reservation -> change_seat"
+  - "Example: 'Cancel reservation r_200 for p_002 and check refund' => get_reservation -> cancel_reservation -> request_refund"
