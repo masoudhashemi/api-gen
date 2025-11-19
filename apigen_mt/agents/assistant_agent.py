@@ -52,5 +52,5 @@ Follow these guidelines:
             return {"type": "message", "content": "This is a mock response. In a real scenario, I would ask a question or call a tool."}
 
         # Delegate to LLM client for tool-aware calls with timeouts + fallback
-        res = self.llm.chat_tools(llm_messages, tools=self.tools, tool_choice="auto", temperature=0.4)
+        res = self.llm.chat_tools(llm_messages, tools=self.tools, tool_choice="auto", temperature=1.0)
         return res

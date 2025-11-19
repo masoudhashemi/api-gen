@@ -105,7 +105,7 @@ Format your response as JSON with keys: naturalness, coherence, information_flow
         response = llm.chat([
             {"role": "system", "content": "You are an expert evaluator of conversational AI quality. Provide detailed, constructive feedback."},
             {"role": "user", "content": evaluation_prompt}
-        ], response_format="json", temperature=0.3)
+        ], response_format="json", temperature=1.0)
 
         import json
         evaluation = json.loads(response)
@@ -175,7 +175,7 @@ Format as JSON with keys: issues, improvements, suggested_responses, naturalness
         response = llm.chat([
             {"role": "system", "content": "You are a dialogue improvement expert. Provide specific, actionable suggestions."},
             {"role": "user", "content": improvement_prompt}
-        ], response_format="json", temperature=0.4)
+        ], response_format="json", temperature=1.0)
 
         import json
         suggestions = json.loads(response)

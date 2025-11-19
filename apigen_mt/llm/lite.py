@@ -27,7 +27,7 @@ class LLMClient:
                 self.mock = True
                 log.warning(self._last_error)
 
-    def chat(self, messages: List[Dict[str, Any]], *, response_format: str | None = None, temperature: float = 0.2) -> str:
+    def chat(self, messages: List[Dict[str, Any]], *, response_format: str | None = None, temperature: float = 1.0) -> str:
         # Validate messages before sending to API
         validated_messages = []
         for msg in messages:
@@ -62,7 +62,7 @@ class LLMClient:
             last = next((m for m in reversed(validated_messages) if m["role"] in ("user", "system")), {"content": ""})
             return f"MOCK[{response_format or 'text'}]: {last.get('content','')}"
 
-    def chat_tools(self, messages: List[Dict[str, Any]], *, tools: List[Dict[str, Any]], tool_choice: str = "auto", temperature: float = 0.4) -> Dict[str, Any]:
+    def chat_tools(self, messages: List[Dict[str, Any]], *, tools: List[Dict[str, Any]], tool_choice: str = "auto", temperature: float = 1.0) -> Dict[str, Any]:
         """Tool-aware chat. Returns a dict describing either a message or a tool_call.
 
         Return schema:

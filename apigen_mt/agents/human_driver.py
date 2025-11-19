@@ -228,7 +228,7 @@ Response should be just the spoken text, no quotes or extra formatting.
             response = self.llm.chat([
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
-            ], temperature=0.7)
+            ], temperature=1.0)
 
             # Clean up response
             response = response.strip()
